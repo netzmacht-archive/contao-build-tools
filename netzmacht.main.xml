@@ -11,7 +11,7 @@
 -->
 
 <project
-        name="netzmacht-devtools.main"
+        name="netzmacht.main"
         default="build"
         >
     <property name="ccabs.basedir" value="${basedir}/vendor/contao-community-alliance/build-system" />
