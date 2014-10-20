@@ -4,6 +4,8 @@
         <available property="phpspec.installed" file="vendor/bin/phpspec"/>
     </target>
     <target name="phpspec" depends="-check-phpspec.installed" if="${phpspec.installed}">
-        <exec dir="${basedir}" executable="vendor/bin/phpspec run" failonerror="true" taskname="phpspec" />
+        <exec dir="${basedir}" executable="vendor/bin/phpspec"  failonerror="true" taskname="phpspec">
+            <arg value="run" />
+        </exec>
     </target>
 </project>
