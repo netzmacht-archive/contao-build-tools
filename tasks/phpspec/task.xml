@@ -1,0 +1,9 @@
+<project name="netzmacht-devtools.task.phpspec">
+    <property file="${netzmacht-devtools.basedir}/tasks/phpunit/default.properties"/>
+    <target name="-check-phpspec.installed" unless="phpspec.installed">
+        <available property="phpspec.installed" file="vendor/bin/phpunit"/>
+    </target>
+    <target name="phpspec" depends="-check-phpspec.installed" if="${phpspec.installed}">
+        <exec dir="${basedir}" executable="vendor/bin/phpspec run" failonerror="true" taskname="phpspec" />
+    </target>
+</project>
