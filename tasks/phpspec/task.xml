@@ -3,6 +3,9 @@
     <condition property="ccabs.phpspec.arg.format" value="" else="--format=${ccabs.phpspec.format}">
         <equals arg1="${ccabs.phpspec.format}" arg2="" />
     </condition>
+    <condition property="ccabs.phpspec.arg.config" value="" else="--config=${ccabs.phpspec.config}">
+        <equals arg1="${ccabs.phpspec.config}" arg2="" />
+    </condition>
     <target name="-check-phpspec.installed" unless="phpspec.installed">
         <available property="phpspec.installed" file="${ccabs.bin.phpspec}"/>
     </target>
@@ -10,6 +13,7 @@
         <exec dir="${basedir}" executable="${ccabs.bin.phpspec}" failonerror="true" taskname="phpspec">
             <arg value="run" />
             <arg value="${ccabs.phpspec.arg.format}" />
+            <arg value="${ccabs.phpspec.arg.config}" />
         </exec>
     </target>
 </project>

@@ -7,4 +7,5 @@ Utilized properties
 ------------------
 
  * `ccabs.bin.phpspec` the path to the phpspec executable (default: `${ccabs.bin.dir}/phpspec`)
- * `ccabs.phpspec.format` optional formatter being set as `phpspec run --format=value`
+ * `ccabs.phpspec.config` optional and custom location for the configuration file`
+ * `ccabs.phpspec.format` optional formatter to output help in another format
