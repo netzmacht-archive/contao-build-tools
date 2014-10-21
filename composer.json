@@ -14,8 +14,8 @@
     ],
     "support":{
         "email":"mail@netzmacht.de",
-        "issues":"https://github.com/netzmacht/contao-development/issues",
-        "source":"https://github.com/netzmacht/contao-development"
+        "issues":"https://github.com/netzmacht/contao-build-tools/issues",
+        "source":"https://github.com/netzmacht/contao-build-tools"
     },
     "require":{
         "contao-community-alliance/build-system": "~1.0",
