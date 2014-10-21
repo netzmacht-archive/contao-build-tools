@@ -12,8 +12,8 @@
     <target name="phpspec" depends="-check-phpspec.installed" if="${phpspec.installed}">
         <exec dir="${basedir}" executable="${ccabs.bin.phpspec}" failonerror="true" taskname="phpspec">
             <arg value="run" />
-            <arg value="${ccabs.phpspec.arg.format}" />
-            <arg value="${ccabs.phpspec.arg.config}" />
+            <arg line="${ccabs.phpspec.arg.config}" />
+            <arg line="${ccabs.phpspec.arg.format}" />
         </exec>
     </target>
 </project>
