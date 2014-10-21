@@ -29,7 +29,6 @@ namespace Netzmacht\Contao\BuildTools;
  */
 class ClassLoader
 {
-
     /**
      * Known namespaces
      * @var array
@@ -185,7 +184,7 @@ class ClassLoader
      */
     public static function register()
     {
-        spl_autoload_register('ClassLoader::load');
+        spl_autoload_register('Netzmacht\Contao\BuildTools\ClassLoader::load');
     }
 
     /**
@@ -194,9 +193,12 @@ class ClassLoader
      */
     public static function scanAndRegister()
     {
-        $contaoPath = dirname(dirname(dirname(dirname(dirname(dirname(__DIR__)))))) . '/contao/core';
+        require_once TL_ROOT . '/system/modules/core/library/Contao/TemplateLoader.php';
 
-        foreach (glob($contaoPath . '/system/modules/*/autoload.php') as $autoload) {
+        class_alias(get_called_class(), 'ClassLoader');
+        class_alias('Contao\TemplateLoader', 'TemplateLoader');
+
+        foreach (glob(TL_ROOT . '/system/modules/*/config/autoload.php') as $autoload) {
             include $autoload;
         }
 

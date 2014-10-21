@@ -1,5 +1,5 @@
 {
-    "name":"netzmacht/contao-devtools",
+    "name":"netzmacht/contao-build-tools",
     "description":"Development toolset for Contao extension developing",
     "keywords":["contao", "development", "test", "ci"],
     "type":"library",
