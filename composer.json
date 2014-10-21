@@ -28,6 +28,14 @@
         "phploc/phploc": "~2.0",
         "phpmd/phpmd": "~2.0"
     },
+    "autoload": {
+        "psr-0": {
+            "Netzmacht\\Contao\\BuildTools\\": "src/"
+        },
+        "files": [
+            "autoload.php"
+        ]
+    },
     "prefer-stable": true,
     "minimum-stability": "dev",
     "extra":{
