@@ -1,5 +1,5 @@
-<project name="netzmacht-devtools.task.phpspec">
-    <property file="${netzmacht-devtools.basedir}/tasks/phpspec/default.properties"/>
+<project name="netzmacht-build-tools.task.phpspec">
+    <property file="${netzmacht-build-tools.basedir}/tasks/phpspec/default.properties"/>
     <condition property="ccabs.phpspec.arg.format" value="" else="--format=${ccabs.phpspec.format}">
         <equals arg1="${ccabs.phpspec.format}" arg2="" />
     </condition>

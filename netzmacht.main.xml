@@ -15,7 +15,7 @@
         default="build"
         >
     <property name="ccabs.basedir" value="${basedir}/vendor/contao-community-alliance/build-system" />
-    <property name="netzmacht-devtools.basedir" value="${basedir}/vendor/netzmacht/contao-devtools" />
+    <property name="netzmacht-build-tools.basedir" value="${basedir}/vendor/netzmacht/contao-devtools" />
 
     <!-- Pull in the local properties first. -->
     <property file="${basedir}/build.properties"/>
