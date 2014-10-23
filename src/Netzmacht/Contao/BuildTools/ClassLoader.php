@@ -198,8 +198,22 @@ class ClassLoader
         class_alias(get_called_class(), 'ClassLoader');
         class_alias('Contao\TemplateLoader', 'TemplateLoader');
 
-        foreach (glob(TL_ROOT . '/system/modules/*/config/autoload.php') as $autoload) {
-            include $autoload;
+        $coreModules = array(
+            'calendar',
+            'comments',
+            'core',
+            'devtools',
+            'faq',
+            'listing',
+            'news',
+            'newsletter',
+            'repository'
+        );
+
+        foreach($coreModules as $module ) {
+            if (file_exists(TL_ROOT . '/system/modules/' . $module . '/config/autoload.php')) {
+                include TL_ROOT . '/system/modules/' . $module . '/config/autoload.php';
+            }
         }
 
         self::register();
