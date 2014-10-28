@@ -21,6 +21,8 @@
     <property file="${basedir}/build.properties"/>
     <!-- Pull in the project default properties next. -->
     <property file="${basedir}/build.default.properties"/>
+    <!-- Pull in the netzmacht build tools default properties next. -->
+    <property file="${netzmacht-build-tools.basedir}/build.default.properties"/>
     <!-- Pull in the global default properties -->
     <property file="${ccabs.basedir}/build.default.properties" />
 
