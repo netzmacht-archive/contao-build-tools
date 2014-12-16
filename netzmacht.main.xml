@@ -27,6 +27,8 @@
     <property file="${ccabs.basedir}/build.default.properties" />
 
     <!-- Import the tasks now. -->
+    <import file="${ccabs.basedir}/tasks/author-validation/task.xml" />
+    <import file="${ccabs.basedir}/tasks/autoloading-validation/task.xml" />
     <import file="${ccabs.basedir}/tasks/branch-alias-validation/task.xml" />
     <import file="${ccabs.basedir}/tasks/composer-validate/task.xml" />
     <import file="${ccabs.basedir}/tasks/pdepend/task.xml" />
@@ -48,13 +50,25 @@
 
     <target
             name="verify"
-            depends="phplint, composer-validate"
+            depends="
+                phplint,
+                composer-validate,
+                autoloading-validation,
+                author-validation"
             description="Verify the quality of the code"
             />
 
     <target
             name="analyze"
-            depends="phploc, pdepend, phpmd, phpcs, phpcpd, phpunit, phpspec, branch-alias-validation, travis-configuration-check"
+            depends="
+                phploc,
+                pdepend,
+                phpmd,
+                phpcs,
+                phpcpd,
+                phpspec,
+                branch-alias-validation,
+                travis-configuration-chec"
             description="Do static analysis of the code"
             />
     <!--
