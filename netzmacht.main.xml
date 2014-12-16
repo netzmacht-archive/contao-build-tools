@@ -36,7 +36,7 @@
     <import file="${ccabs.basedir}/tasks/phploc/task.xml" />
     <import file="${ccabs.basedir}/tasks/phpmd/task.xml" />
     <import file="${ccabs.basedir}/tasks/phpunit/task.xml" />
-    <import file="tasks/phpspec/task.xml" />
+    <import file="${ccabs.basedir}/tasks/phpspec/task.xml" />
     <import file="${ccabs.basedir}/tasks/travis-configuration-check/task.xml" />
 
     <!-- Build targets from here on. -->
