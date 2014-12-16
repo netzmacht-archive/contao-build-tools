@@ -68,7 +68,7 @@
                 phpcpd,
                 phpspec,
                 branch-alias-validation,
-                travis-configuration-chec"
+                travis-configuration-check"
             description="Do static analysis of the code"
             />
     <!--
