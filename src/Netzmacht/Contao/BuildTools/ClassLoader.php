@@ -12,7 +12,7 @@
 namespace Netzmacht\Contao\BuildTools;
 
 /**
- * Automatically loads class files based on a mapper array
+ * Automatically loads class files based on a mapper array.
  *
  * The class stores namespaces and classes and automatically loads the class
  * files upon their first usage. It uses a mapper array to support complex
@@ -30,7 +30,8 @@ namespace Netzmacht\Contao\BuildTools;
 class ClassLoader
 {
     /**
-     * Known namespaces
+     * Known namespaces.
+     *
      * @var array
      */
     protected static $namespaces = array
@@ -39,21 +40,23 @@ class ClassLoader
     );
 
     /**
-     * Known classes
+     * Known classes.
+     *
      * @var array
      */
     protected static $classes = array();
 
 
     /**
-     * Add a new namespace
+     * Add a new namespace.
      *
-     * @param string $name The namespace name
+     * @param string $name The namespace name.
+     *
+     * @return void
      */
     public static function addNamespace($name)
     {
-        if (in_array($name, self::$namespaces))
-        {
+        if (in_array($name, self::$namespaces)) {
             return;
         }
 
@@ -62,51 +65,53 @@ class ClassLoader
 
 
     /**
-     * Add multiple new namespaces
+     * Add multiple new namespaces.
      *
-     * @param array $names An array of namespace names
+     * @param array $names An array of namespace names.
+     *
+     * @return void
      */
     public static function addNamespaces($names)
     {
-        foreach ($names as $name)
-        {
+        foreach ($names as $name) {
             self::addNamespace($name);
         }
     }
 
 
     /**
-     * Return the namespaces as array
+     * Return the namespaces as array.
      *
-     * @return array An array of all namespaces
+     * @return array An array of all namespaces.
      */
     public static function getNamespaces()
     {
         return self::$namespaces;
     }
 
-
     /**
-     * Add a new class with its file path
+     * Add a new class with its file path.
      *
-     * @param string $class The class name
-     * @param string $file  The path to the class file
+     * @param string $class The class name.
+     * @param string $file  The path to the class file.
+     *
+     * @return void
      */
     public static function addClass($class, $file)
     {
         self::$classes[$class] = $file;
     }
 
-
     /**
-     * Add multiple new classes with their file paths
+     * Add multiple new classes with their file paths.
      *
-     * @param array $classes An array of classes
+     * @param array $classes An array of classes.
+     *
+     * @return void
      */
     public static function addClasses($classes)
     {
-        foreach ($classes as $class=>$file)
-        {
+        foreach ($classes as $class => $file) {
             self::addClass($class, $file);
         }
     }
@@ -115,7 +120,7 @@ class ClassLoader
     /**
      * Return the classes as array.
      *
-     * @return array An array of all classes
+     * @return array
      */
     public static function getClasses()
     {
@@ -124,31 +129,28 @@ class ClassLoader
 
 
     /**
-     * Autoload a class and create an alias in the global namespace
+     * Autoload a class and create an alias in the global namespace.
      *
      * To preserve backwards compatibility with Contao 2 extensions, all core
      * classes will be aliased into the global namespace.
      *
-     * @param string $class The class name
+     * @param string $class The class name.
+     *
+     * @return void
      */
     public static function load($class)
     {
-        if (class_exists($class, false) || interface_exists($class, false))
-        {
+        if (class_exists($class, false) || interface_exists($class, false)) {
             return;
         }
 
         // The class file is set in the mapper
-        if (isset(self::$classes[$class]))
-        {
+        if (isset(self::$classes[$class])) {
             include TL_ROOT . '/' . self::$classes[$class];
-        }
+        } elseif (($namespaced = self::findClass($class)) != false) {
+            // Find the class in the registered namespaces
 
-        // Find the class in the registered namespaces
-        elseif (($namespaced = self::findClass($class)) != false)
-        {
-            if (!class_exists($namespaced, false))
-            {
+            if (!class_exists($namespaced, false)) {
                 include TL_ROOT . '/' . self::$classes[$namespaced];
             }
 
@@ -158,20 +160,17 @@ class ClassLoader
         // Pass the request to other autoloaders (e.g. Swift)
     }
 
-
     /**
-     * Search the namespaces for a matching entry
+     * Search the namespaces for a matching entry.
      *
-     * @param string $class The class name
+     * @param string $class The class name.
      *
      * @return string The full path including the namespace
      */
     protected static function findClass($class)
     {
-        foreach (self::$namespaces as $namespace)
-        {
-            if (isset(self::$classes[$namespace . '\\' . $class]))
-            {
+        foreach (self::$namespaces as $namespace) {
+            if (isset(self::$classes[$namespace . '\\' . $class])) {
                 return $namespace . '\\' . $class;
             }
         }
@@ -180,7 +179,9 @@ class ClassLoader
     }
 
     /**
-     * Register the autoloader
+     * Register the autoloader.
+     *
+     * @return void
      */
     public static function register()
     {
@@ -188,8 +189,9 @@ class ClassLoader
     }
 
     /**
-     * Scan the module directories for config/autoload.php files and then
-     * register the autoloader on the SPL stack
+     * Scan the module directories for config/autoload.php files and then register the autoloader on the SPL stack.
+     *
+     * @return void
      */
     public static function scanAndRegister()
     {
@@ -210,7 +212,7 @@ class ClassLoader
             'repository'
         );
 
-        foreach($coreModules as $module ) {
+        foreach ($coreModules as $module) {
             if (file_exists(TL_ROOT . '/system/modules/' . $module . '/config/autoload.php')) {
                 include TL_ROOT . '/system/modules/' . $module . '/config/autoload.php';
             }

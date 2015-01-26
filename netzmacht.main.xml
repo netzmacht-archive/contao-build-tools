@@ -2,7 +2,7 @@
 <!--
     This is a default build file that sits outside of any project folders, but which is imported into the project build
     file like so:
-        <import file="vendor/contao-community-alliance/build-system/ccabs.main.xml"/>
+        <import file="vendor/contao-community-alliance/build-system/phpcq.main.xml"/>
 
     All relative references in this file, are assumed to be from the base of the project build file.
     If an identically named target in the project build file is also present in this imported file, the one from the
@@ -10,11 +10,8 @@
     target, for instance.
 -->
 
-<project
-        name="netzmacht.main"
-        default="build"
-        >
-    <property name="ccabs.basedir" value="${basedir}/vendor/contao-community-alliance/build-system" />
+<project name="netzmacht.main" default="build">
+    <property name="phpcq.basedir" value="${basedir}/vendor/phpcq/phpcq" />
     <property name="netzmacht-build-tools.basedir" value="${basedir}/vendor/netzmacht/contao-build-tools" />
 
     <!-- Pull in the local properties first. -->
@@ -24,22 +21,22 @@
     <!-- Pull in the netzmacht build tools default properties next. -->
     <property file="${netzmacht-build-tools.basedir}/build.default.properties"/>
     <!-- Pull in the global default properties -->
-    <property file="${ccabs.basedir}/build.default.properties" />
+    <property file="${phpcq.basedir}/build.default.properties" />
 
     <!-- Import the tasks now. -->
-    <import file="${ccabs.basedir}/tasks/author-validation/task.xml" />
-    <import file="${ccabs.basedir}/tasks/autoloading-validation/task.xml" />
-    <import file="${ccabs.basedir}/tasks/branch-alias-validation/task.xml" />
-    <import file="${ccabs.basedir}/tasks/composer-validate/task.xml" />
-    <import file="${ccabs.basedir}/tasks/pdepend/task.xml" />
-    <import file="${ccabs.basedir}/tasks/phplint/task.xml" />
-    <import file="${ccabs.basedir}/tasks/phpcpd/task.xml" />
-    <import file="${ccabs.basedir}/tasks/phpcs/task.xml" />
-    <import file="${ccabs.basedir}/tasks/phploc/task.xml" />
-    <import file="${ccabs.basedir}/tasks/phpmd/task.xml" />
-    <import file="${ccabs.basedir}/tasks/phpunit/task.xml" />
-    <import file="${ccabs.basedir}/tasks/phpspec/task.xml" />
-    <import file="${ccabs.basedir}/tasks/travis-configuration-check/task.xml" />
+    <import file="${phpcq.basedir}/tasks/author-validation/task.xml" />
+    <import file="${phpcq.basedir}/tasks/autoload-validation/task.xml" />
+    <import file="${phpcq.basedir}/tasks/branch-alias-validation/task.xml" />
+    <import file="${phpcq.basedir}/tasks/composer-validate/task.xml" />
+    <import file="${phpcq.basedir}/tasks/pdepend/task.xml" />
+    <import file="${phpcq.basedir}/tasks/phplint/task.xml" />
+    <import file="${phpcq.basedir}/tasks/phpcpd/task.xml" />
+    <import file="${phpcq.basedir}/tasks/phpcs/task.xml" />
+    <import file="${phpcq.basedir}/tasks/phploc/task.xml" />
+    <import file="${phpcq.basedir}/tasks/phpmd/task.xml" />
+    <import file="${phpcq.basedir}/tasks/phpunit/task.xml" />
+    <import file="${phpcq.basedir}/tasks/phpspec/task.xml" />
+    <import file="${phpcq.basedir}/tasks/travis-configuration-check/task.xml" />
 
     <!-- Build targets from here on. -->
     <target
@@ -53,7 +50,7 @@
             depends="
                 phplint,
                 composer-validate,
-                autoloading-validation,
+                autoload-validation,
                 author-validation"
             description="Verify the quality of the code"
             />
