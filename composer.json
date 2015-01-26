@@ -33,8 +33,10 @@
     },
     "autoload": {
         "psr-0": {
-            "Netzmacht\\Contao\\BuildTools\\": "src/"
-        },
+            "Netzmacht\\Contao\\BuildTools": "src/"
+        }
+    },
+    "autoload-dev": {
         "files": [
             "autoload.php"
         ]
